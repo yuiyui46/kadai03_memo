@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>myMemoPad</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .question {
+      margin-bottom: 20px;
+    }
+
+    .button-area button {
+      font-size: 16px;
+      margin: 5px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      background-color: #f1f1f1;
+      padding: 10px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>健診・検診 品質調査票</h1>
+
+  <main>
+    <div class="input-area">
+      <div class="page" id="page-1">
+        <!-- Question 1 -->
+        <div class="question">
+          <p>1. 主な回答者の職種を選択してください:</p>
+          <select id="syoku">
+            <option value="事務職">事務職</option>
+            <option value="医師">医師</option>
+            <option value="看護職">看護職</option>
+            <option value="その他医療職">その他医療職</option>
+            <option value="その他">その他</option>
+          </select>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="question">
+          <p>2. 主たる施設種別を選択してください:</p>
+          <select id="shisetsu">
+            <option value="病院または病院付属施設">病院または病院付属健診施設</option>
+            <option value="その他の健診専門施設">その他の健診施設</option>
+            <option value="診療所">診療所</option>
+            <option value="その他">その他</option>
+          </select>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="question">
+          <p>3. 貴施設での受診者に提供している検査を選択してください (複数回答可):</p>
+          <div>
+            <input type="checkbox" id="general" name="tests" value="定期健康診断/雇用時健康診断">
+            <label for="general">定期健診 / 雇用時健診</label>
+          </div>
+          <div>
+            <input type="checkbox" id="gas" name="tests" value="胃がん検診">
+            <label for="gas">胃がん検診</label>
+          </div>
+          <div>
+            <input type="checkbox" id="chest" name="tests" value="肺がん検診">
+            <label for="chest">肺がん検診</label>
+          </div>
+          <div>
+            <input type="checkbox" id="colo" name="tests" value="大腸がん検診">
+            <label for="colo">大腸がん検診</label>
+          </div>
+          <div>
+            <input type="checkbox" id="mammo" name="tests" value="乳がん検診">
+            <label for="mammo">乳がん検診</label>
+          </div>
+          <div>
+            <input type="checkbox" id="cerv" name="tests" value="子宮頸がん検診">
+            <label for="cerv">子宮頸がん検診</label>
+          </div>
+          <div>
+            <input type="checkbox" id="sonota" name="tests" value="その他のがん検診">
+            <label for="sonota">その他のがん検診</label>
+          </div>
+          <div id="sonota-text" class="hidden">
+            <p>その他提供しているがん検診を記入してください:</p>
+            <textarea id="sonota-detail" placeholder="本文を入力"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="page hidden" id="page-2">
+        <!-- 胃がん検診質問 -->
+        <div class="question hidden" id="gas-questions">
+          <p>4. 胃がん検診を選択した方へ質問です。がん検診として提供している検査を選択してください（複数回答可能）。</p>
+          <div>
+            <input type="checkbox" id="gas-detail-1" name="gas-details" value="胃部内視鏡検査">
+            <label for="gas-detail-1">胃部内視鏡検査</label>
+          </div>
+          <div>
+            <input type="checkbox" id="gas-detail-2" name="gas-details" value="胃部Ｘ線検査">
+            <label for="gas-detail-2">胃部Ｘ線検査</label>
+          </div>
+        </div>
+
+        <!-- 肺がん検診質問 -->
+        <div class="question hidden" id="chest-questions">
+          <p>4. 肺がん検診を選択した方へ質問です。がん検診として提供している検査を選択してください（複数回答可能）。</p>
+          <div>
+            <input type="checkbox" id="chest-detail-1" name="chest-details" value="胸部X線検査">
+            <label for="chest-detail-1">胸部X線検査</label>
+          </div>
+          <div>
+            <input type="checkbox" id="chest-detail-2" name="chest-details" value="胸部CT検査">
+            <label for="chest-detail-2">胸部CT検査</label>
+          </div>
+        </div>
+        
+        <!-- 大腸がん検診質問 -->
+        <div class="question hidden" id="colo-questions">
+          <p>4. 大腸がん検診を選択した方へ質問です。がん検診として提供している検査を選択してください（複数回答可能）。</p>
+          <div>
+            <input type="checkbox" id="colo-detail-1" name="colo-details" value="便潜血検査">
+            <label for="colo-detail-1">便潜血検査</label>
+          </div>
+          <div>
+            <input type="checkbox" id="colo-detail-2" name="colo-details" value="大腸内視鏡検査">
+            <label for="colo-detail-2">大腸内視鏡検査</label>
+          </div>
+        </div>
+
+        <!-- 乳がん検診質問 -->
+        <div class="question hidden" id="mammo-questions">
+          <p>4. 乳がん検診を選択した方へ質問です。がん検診として提供している検査を選択してください（複数回答可能）。</p>
+          <div>
+            <input type="checkbox" id="mammo-detail-1" name="mammo-details" value="マンモグラフィ">
+            <label for="mammo-detail-1">マンモグラフィ</label>
+          </div>
+          <div>
+            <input type="checkbox" id="mammo-detail-2" name="mammo-details" value="乳腺エコー">
+            <label for="mammo-detail-2">乳腺エコー</label>
+          </div>
+        </div>
+
+        <!-- 子宮頸がん検診質問 -->
+        <div class="question hidden" id="cerv-questions">
+          <p>4. 子宮頸がん検診を選択した方へ質問です。がん検診として提供している検査を選択してください（複数回答可能）。</p>
+          <div>
+            <input type="checkbox" id="cerv-detail-1" name="cerv-details" value="子宮頸部細胞診">
+            <label for="cerv-detail-1">子宮頸部細胞診</label>
+          </div>
+          <div>
+            <input type="checkbox" id="cerv-detail-2" name="cerv-details" value="HPV検査">
+            <label for="cerv-detail-2">HPV検査</label>
+          </div>
+        </div>
+
+        <!-- 分岐質問 -->
+        <div class="question hidden" id="additional-questions-1">
+          <p>5. 以下の項目について選択してください（複数回答可能）。</p>
+          <div>
+            <input type="checkbox" id="additional-detail-1" name="additional-details" value="受診者への説明">
+            <label for="additional-detail-1">受診者への説明</label>
+          </div>
+          <div>
+            <input type="checkbox" id="additional-detail-2" name="additional-details" value="事業評価の検討">
+            <label for="additional-detail-2">事業評価の検討</label>
+          </div>
+          <div>
+            <input type="checkbox" id="additional-detail-3" name="additional-details" value="二重読影">
+            <label for="additional-detail-3">二重読影</label>
+          </div>
+          <div>
+            <input type="checkbox" id="additional-detail-4" name="additional-details" value="外部委員会">
+            <label for="additional-detail-4">外部委員会</label>
+          </div>
+        </div>
+
+        <div class="question hidden" id="additional-questions-2">
+          <p>5. 以下の項目について選択してください（複数回答可能）。</p>
+          <div>
+            <input type="checkbox" id="additional-detail-5" name="additional-details-2" value="受診者への説明">
+            <label for="additional-detail-5">受診者への説明</label>
+          </div>
+          <div>
+            <input type="checkbox" id="additional-detail-6" name="additional-details-2" value="事業評価の検討">
+            <label for="additional-detail-6">事業評価の検討</label>
+          </div>
+        </div>
+
+        <!-- その他の質問 -->
+        <div class="question" id="general-questions">
+          <p>6. その他、ご意見やご感想をご自由に記入してください:</p>
+          <textarea id="health-comment" placeholder="本文を入力"></textarea>
+        </div>
+      </div>
+
+      <div class="button-area">
+        <button id="prev" class="hidden">前へ</button>
+        <button id="next">次へ</button>
+        <button id="save" class="hidden">一時保存</button>
+        <button id="clear">全て削除</button>
+      </div>
+    </div>
+  </main>
+
+  <ul id="list">
+    <!-- ここに追加データが挿入される -->
+  </ul>
+  <footer>
+    〇〇大学研究室
+  </footer>
+
+  <script src="js/jquery-2.1.3.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+
+</html>
