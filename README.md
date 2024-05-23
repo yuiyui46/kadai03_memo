@@ -2,7 +2,8 @@
 
 ②課題内容（どんな作品か）　　 -健診品質チェックリスト
 
-③DEMO　　 https://yuiyui46.github.io/kadai_janken2/ 
+③DEMO　　 https://yuiyui46.github.io/kadai03_memo/
+
 ④作ったアプリケーション用のIDまたはPasswordがある場合　　 -ID: 今回なし　　 -PW: 今回なし　　
 
 ⑤こだわった点　　 -レスポンシブデザイン  -ボタンや文字のhoverを活用した滑らかなアニメーション -回答者の回答しやすさ
